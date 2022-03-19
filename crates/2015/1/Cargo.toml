@@ -1,0 +1,24 @@
+[package]
+name = "aoc_2015_1"
+version = "0.0.0"
+authors = ["Filip Andersson"]
+description = "Advent of code 2015, day 1"
+license = "MIT"
+edition = "2021"
+
+[lib]
+doctest = false
+
+[[bench]]
+name = "bench"
+harness = false
+
+[dev-dependencies]
+criterion = "0.3"
+
+
+[dependencies]
+lazy-regex = "2.3.0"
+itertools = "0.10.3"
+anyhow = "1.0.56"
+num = "0.4.0"
