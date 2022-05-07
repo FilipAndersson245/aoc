@@ -1,5 +1,4 @@
-
-def main [year: int, day: int] {
+def main [year, day] {
     let name = $"aoc_($year)_($day)"
     let path_year = $"./crates/($year)"
     let path_day = $"($path_year)/($day)"
@@ -25,4 +24,3 @@ def main [year: int, day: int] {
         sd '§day§'  $day  $it
     }
 }
-

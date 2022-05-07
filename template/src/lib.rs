@@ -12,11 +12,11 @@ use std::collections::HashSet;
 use std::collections::VecDeque;
 
 use itertools::Itertools;
-use lazy_regex;
+use lazy_regex::regex;
 
 #[cold]
 #[inline(never)]
-pub fn get_input() -> &str {
+pub fn get_input() -> &'static str {
     include_str!("§day§.txt")
 }
 
