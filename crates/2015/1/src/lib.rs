@@ -1,11 +1,9 @@
-use anyhow::Result;
+use anyhow::{Ok, Result};
 use itertools::Itertools;
 
-// #[cold]
-// #[inline(never)]
-pub fn get_input() -> String {
-    // include_str!("1.txt")
-    std::fs::read_to_string("../../../crates/2015/1/src/1.txt").unwrap()
+pub fn get_input() -> Result<String> {
+    let input = std::fs::read_to_string("../../../crates/2015/1/src/1.txt")?;
+    Ok(input)
 }
 
 pub fn p1(input: &str) -> Result<i32> {
@@ -24,6 +22,7 @@ pub fn p1_v2(input: &str) -> Result<i32> {
             _ => unreachable!(),
         }
     }
+
     Ok(state)
 }
 

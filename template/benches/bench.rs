@@ -2,7 +2,7 @@ use aoc_§year§_§day§::*;
 use criterion::{black_box, criterion_group, criterion_main, Criterion};
 
 pub fn benchmark(c: &mut Criterion) {
-    let input = get_input();
+    let input = get_input().expect("Failed to read input");
 
     let mut bp1 = c.benchmark_group("§year§_§day§_p1");
     bp1.significance_level(0.01).sample_size(500);

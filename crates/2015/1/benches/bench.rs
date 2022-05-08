@@ -2,7 +2,7 @@ use aoc_2015_1::*;
 use criterion::{black_box, criterion_group, criterion_main, Criterion};
 
 pub fn benchmark(c: &mut Criterion) {
-    let input = get_input();
+    let input = get_input().unwrap();
 
     let mut bp1 = c.benchmark_group("2015_1_p1");
     bp1.significance_level(0.01).sample_size(500);

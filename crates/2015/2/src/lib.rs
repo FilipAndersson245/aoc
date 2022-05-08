@@ -7,9 +7,9 @@ pub type Rows = Vec<Row>;
 
 #[cold]
 #[inline(never)]
-pub fn get_input() -> String {
-    // include_str!("2.txt")
-    std::fs::read_to_string("../../../crates/2015/2/src/2.txt").unwrap()
+pub fn get_input() -> Result<String> {
+    let input = std::fs::read_to_string("../../../crates/2015/2/src/2.txt")?;
+    Ok(input)
 }
 
 pub fn parse_input(input: &str) -> Vec<Row> {

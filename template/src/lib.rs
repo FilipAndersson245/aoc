@@ -14,10 +14,9 @@ use std::collections::VecDeque;
 use itertools::Itertools;
 use lazy_regex::regex;
 
-#[cold]
-#[inline(never)]
-pub fn get_input() -> &'static str {
-    include_str!("§day§.txt")
+pub fn get_input() -> Result<String> {
+    let input = std::fs::read_to_string("../../../crates/§year§/§day§/src/§day§.txt")?;
+    Ok(input)
 }
 
 pub fn parse_input(input: &str) {
