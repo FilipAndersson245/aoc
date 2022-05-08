@@ -14,16 +14,11 @@ pub fn p1(input: &str) -> Result<i32> {
 }
 
 pub fn p1_v2(input: &str) -> Result<i32> {
-    let mut state = 0;
-    for ch in input.chars() {
-        match ch {
-            '(' => state = state + 1,
-            ')' => state = state - 1,
-            _ => unreachable!(),
-        }
-    }
-
-    Ok(state)
+    Ok(input.chars().fold(0, |accum, ch| match ch {
+        '(' => accum + 1,
+        ')' => accum - 1,
+        _ => unreachable!(),
+    }))
 }
 
 pub fn p2(input: &str) -> Result<usize> {
@@ -47,12 +42,12 @@ mod aoc_2015_1 {
     use super::*;
 
     fn test_p1_helper(input: &str, expected: i32) {
-        let res = p1(&input).unwrap();
+        let res = p1(input).unwrap();
         assert_eq!(res, expected);
     }
 
     fn test_p2_helper(input: &str, expected: usize) {
-        let res = p2(&input).unwrap();
+        let res = p2(input).unwrap();
         assert_eq!(res, expected);
     }
 

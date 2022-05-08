@@ -5,14 +5,12 @@ use itertools::Itertools;
 pub type Row = [u32; 3];
 pub type Rows = Vec<Row>;
 
-#[cold]
-#[inline(never)]
-pub fn get_input() -> Result<String> {
+pub fn get_input() -> Result<Rows> {
     let input = std::fs::read_to_string("../../../crates/2015/2/src/2.txt")?;
-    Ok(input)
+    Ok(parse_input(&input))
 }
 
-pub fn parse_input(input: &str) -> Vec<Row> {
+fn parse_input(input: &str) -> Vec<Row> {
     input
         .lines()
         .map(|line| {

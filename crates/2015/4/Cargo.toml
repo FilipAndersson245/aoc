@@ -1,0 +1,15 @@
+[package]
+name = "aoc_2015_4"
+version = "0.0.0"
+authors = ["Filip Andersson"]
+description = "Advent of code 2015, day 4"
+license = "MIT"
+edition = "2021"
+
+[lib]
+doctest = false
+
+[dependencies]
+anyhow = { workspace = true }
+hex = "0.4.3"
+md-5 = "0.10.5"

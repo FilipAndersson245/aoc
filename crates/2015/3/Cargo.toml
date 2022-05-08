@@ -1,8 +1,8 @@
 [package]
-name = "§name§"
+name = "aoc_2015_3"
 version = "0.0.0"
 authors = ["Filip Andersson"]
-description = "Advent of code §year§, day §day§"
+description = "Advent of code 2015, day 3"
 license = "MIT"
 edition = "2021"
 
@@ -18,5 +18,4 @@ brunch = { workspace = true }
 
 
 [dependencies]
-itertools = { workspace = true }
 anyhow = { workspace = true }
