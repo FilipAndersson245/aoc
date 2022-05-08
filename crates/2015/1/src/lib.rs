@@ -1,10 +1,11 @@
 use anyhow::Result;
 use itertools::Itertools;
 
-#[cold]
-#[inline(never)]
-pub fn get_input() -> &'static str {
-    include_str!("1.txt")
+// #[cold]
+// #[inline(never)]
+pub fn get_input() -> String {
+    // include_str!("1.txt")
+    std::fs::read_to_string("../../../crates/2015/1/src/1.txt").unwrap()
 }
 
 pub fn p1(input: &str) -> Result<i32> {

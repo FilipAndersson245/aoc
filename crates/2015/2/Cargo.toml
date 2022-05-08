@@ -21,7 +21,5 @@ features = []
 
 
 [dependencies]
-lazy-regex = "2.3.0"
 itertools = "0.10.3"
 anyhow = "1.0.56"
-num = "0.4.0"

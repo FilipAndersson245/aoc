@@ -13,3 +13,5 @@ strip = "symbols"
 lto = "thin"
 debug = 0
 strip = "symbols"
+panic = "abort"
+codegen-units = 1
