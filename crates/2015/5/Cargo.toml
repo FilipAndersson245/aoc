@@ -1,0 +1,22 @@
+[package]
+name = "aoc_2015_5"
+version = "0.0.0"
+authors = ["Filip Andersson"]
+description = "Advent of code 2015, day 5"
+license = "MIT"
+edition = "2021"
+
+[lib]
+doctest = false
+
+[[bench]]
+name = "bench"
+harness = false
+
+[dev-dependencies]
+brunch = { workspace = true }
+
+
+[dependencies]
+itertools = { workspace = true }
+anyhow = { workspace = true }
