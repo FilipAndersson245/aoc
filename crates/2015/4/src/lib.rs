@@ -1,5 +1,4 @@
 use anyhow::Result;
-
 use hex::ToHex;
 use md5::{Digest, Md5};
 use std::fmt;
@@ -50,11 +49,11 @@ pub fn p2(input: &str) -> Result<i32> {
 }
 
 #[cfg(test)]
-#[cfg(disabled)]
-mod aoc_2015_4 {
+mod d1 {
     use super::*;
 
     #[test]
+    #[ignore = "slow"]
     fn p1_test() {
         let key = "abcdef";
         let a = p1(key).unwrap();
@@ -68,8 +67,14 @@ mod aoc_2015_4 {
         let a = p1(&key).unwrap();
         assert_eq!(a, 282749)
     }
+}
+
+#[cfg(test)]
+mod d2 {
+    use super::*;
 
     #[test]
+    #[ignore = "slow"]
     fn p2_test() {
         let key = get_input().unwrap();
         let a = p2(&key).unwrap();

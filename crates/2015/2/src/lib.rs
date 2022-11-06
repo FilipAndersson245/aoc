@@ -10,7 +10,7 @@ pub fn get_input() -> Result<Rows> {
     Ok(parse_input(&input))
 }
 
-fn parse_input(input: &str) -> Vec<Row> {
+pub fn parse_input(input: &str) -> Vec<Row> {
     input
         .lines()
         .map(|line| {
@@ -45,30 +45,35 @@ pub fn p2(input: &Rows) -> Result<u32> {
 }
 
 #[cfg(test)]
-mod aoc_2015_2 {
+mod p1 {
     use super::*;
 
-    fn p1_helper(input: &str, expection: u32) {
+    fn helper(input: &str, expection: u32) {
         let data = parse_input(input);
         let res = p1(&data).unwrap();
         assert_eq!(res, expection)
     }
 
-    fn p2_helper(input: &str, expection: u32) {
+    #[test]
+    fn t1() {
+        helper("2x3x4", 58);
+        helper("1x1x10", 43);
+    }
+}
+
+#[cfg(test)]
+mod p2 {
+    use super::*;
+
+    fn helper(input: &str, expection: u32) {
         let data = parse_input(input);
         let res = p2(&data).unwrap();
         assert_eq!(res, expection)
     }
 
     #[test]
-    fn test_p1() {
-        p1_helper("2x3x4", 58);
-        p1_helper("1x1x10", 43);
-    }
-
-    #[test]
-    fn test_p2() {
-        p2_helper("2x3x4", 34);
-        p2_helper("1x1x10", 14);
+    fn t1() {
+        helper("2x3x4", 34);
+        helper("1x1x10", 14);
     }
 }

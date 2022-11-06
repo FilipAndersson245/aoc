@@ -1,5 +1,5 @@
 [package]
-name = "aoc_2015_4"
+name = "aoc-2015-4"
 version = "0.0.0"
 authors = ["Filip Andersson"]
 description = "Advent of code 2015, day 4"

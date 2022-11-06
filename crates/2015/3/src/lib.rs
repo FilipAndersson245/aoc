@@ -1,5 +1,4 @@
 use anyhow::Result;
-
 use std::collections::HashSet;
 
 pub fn get_input() -> Result<String> {
@@ -49,23 +48,27 @@ pub fn p2(input: &str) -> Result<i32> {
 }
 
 #[cfg(test)]
-mod aoc_2015_3 {
+mod p1 {
     use super::*;
 
     #[test]
-    fn p1_test() {
+    fn t1() {
         assert_eq!(p1(">").unwrap(), 2);
         assert_eq!(p1(">>").unwrap(), 3);
         assert_eq!(p1(">><").unwrap(), 3);
         assert_eq!(p1("").unwrap(), 1);
         assert_eq!(p1("^").unwrap(), 2);
-
         assert_eq!(p1("^>v<").unwrap(), 4);
         assert_eq!(p1("^v^v^v^v^v^").unwrap(), 2);
     }
+}
+
+#[cfg(test)]
+mod p2 {
+    use super::*;
 
     #[test]
-    fn p2_test() {
+    fn t1() {
         assert_eq!(p2("^v").unwrap(), 3);
         assert_eq!(p2("^>v<").unwrap(), 3);
         assert_eq!(p2("^v^v^v^v^v").unwrap(), 11);

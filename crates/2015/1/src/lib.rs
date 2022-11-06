@@ -38,46 +38,33 @@ pub fn p2(input: &str) -> Result<usize> {
 }
 
 #[cfg(test)]
-mod aoc_2015_1 {
+mod p1 {
     use super::*;
-
     fn test_p1_helper(input: &str, expected: i32) {
         let res = p1(input).unwrap();
         assert_eq!(res, expected);
     }
 
+    #[test]
+    fn t1() {
+        test_p1_helper("(((", 3);
+        test_p1_helper("((()", 2);
+        test_p1_helper("()()()", 0);
+        test_p1_helper("()()())", -1);
+    }
+}
+
+#[cfg(test)]
+mod p2 {
+    use super::*;
     fn test_p2_helper(input: &str, expected: usize) {
         let res = p2(input).unwrap();
         assert_eq!(res, expected);
     }
 
     #[test]
-    fn p1_1() {
-        test_p1_helper("(((", 3)
-    }
-
-    #[test]
-    fn p1_2() {
-        test_p1_helper("((()", 2)
-    }
-
-    #[test]
-    fn p1_3() {
-        test_p1_helper("()()()", 0)
-    }
-
-    #[test]
-    fn p1_4() {
-        test_p1_helper("()()())", -1)
-    }
-
-    #[test]
-    fn p2_1() {
-        test_p2_helper(")", 1)
-    }
-
-    #[test]
-    fn p2_2() {
-        test_p2_helper("()())", 5)
+    fn t1() {
+        test_p2_helper(")", 1);
+        test_p2_helper("()())", 5);
     }
 }

@@ -1,5 +1,5 @@
 [package]
-name = "aoc_2015_5"
+name = "aoc-2015-5"
 version = "0.0.0"
 authors = ["Filip Andersson"]
 description = "Advent of code 2015, day 5"
@@ -9,14 +9,9 @@ edition = "2021"
 [lib]
 doctest = false
 
-[[bench]]
-name = "bench"
-harness = false
-
-[dev-dependencies]
-brunch = { workspace = true }
-
 
 [dependencies]
 itertools = { workspace = true }
 anyhow = { workspace = true }
+fancy-regex = { workspace = true, default-features = false}
+once_cell = { workspace = true }
