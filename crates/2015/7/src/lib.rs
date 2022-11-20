@@ -1,4 +1,5 @@
 use anyhow::Result;
+use helper::AOCError;
 use itertools::Itertools;
 use std::collections::HashMap;
 
@@ -8,12 +9,8 @@ pub struct Schema<'a> {
     pub base: HashMap<&'a str, Vec<&'a str>>,
 }
 
-pub fn get_input() -> Result<String> {
-    let input = std::fs::read_to_string("../../../crates/2015/7/src/7.txt")?;
-    Ok(input)
-}
-
-pub fn p1(input: &str, key: &str) -> u16 {
+pub fn p1(input: &str) -> Result<impl ToString, AOCError> {
+    let key = "a";
     let mut knowledge = Schema {
         shortcut: HashMap::with_capacity(256),
         base: HashMap::with_capacity(256),
@@ -25,7 +22,7 @@ pub fn p1(input: &str, key: &str) -> u16 {
         knowledge.base.insert(ident, wire);
     }
 
-    p1_recursive(&mut knowledge, key)
+    Ok(p1_recursive(&mut knowledge, key))
 }
 
 fn p1_recursive(knowledge: &mut Schema, key: &str) -> u16 {
@@ -58,24 +55,6 @@ fn p1_recursive(knowledge: &mut Schema, key: &str) -> u16 {
     shortcut
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn t1() {
-        let data = "123 -> x
-        456 -> y
-        x -> p
-        x AND y -> d
-        x OR y -> e
-        x LSHIFT 2 -> f
-        y RSHIFT 2 -> g
-        NOT x -> h
-        NOT y -> i";
-        assert_eq!(p1(data, "e"), 507);
-        assert_eq!(p1(data, "i"), 65079);
-        assert_eq!(p1(data, "y"), 456);
-        assert_eq!(p1(data, "p"), 123);
-    }
+pub fn p2(input: &str) -> Result<impl ToString, AOCError> {
+    p1(input)
 }

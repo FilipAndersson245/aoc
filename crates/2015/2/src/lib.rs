@@ -1,16 +1,11 @@
-use anyhow::Ok;
 use anyhow::Result;
+use helper::*;
 use itertools::Itertools;
 
 pub type Row = [u32; 3];
 pub type Rows = Vec<Row>;
 
-pub fn get_input() -> Result<Rows> {
-    let input = std::fs::read_to_string("../../../crates/2015/2/src/2.txt")?;
-    Ok(parse_input(&input))
-}
-
-pub fn parse_input(input: &str) -> Vec<Row> {
+fn parse_input(input: &str) -> Vec<Row> {
     input
         .lines()
         .map(|line| {
@@ -26,8 +21,9 @@ pub fn parse_input(input: &str) -> Vec<Row> {
         .collect_vec()
 }
 
-pub fn p1(input: &Rows) -> Result<u32> {
-    let res = input.iter().fold(0, |acc, row| {
+pub fn p1(input: &str) -> Result<impl ToString, AOCError> {
+    let input = parse_input(input);
+    let res: u32 = input.iter().fold(0, |acc, row| {
         let [l, w, h] = row;
         let res = (2 * l * w) + (2 * w * h) + (2 * h * l) + (l * w);
         acc + res
@@ -35,45 +31,12 @@ pub fn p1(input: &Rows) -> Result<u32> {
     Ok(res)
 }
 
-pub fn p2(input: &Rows) -> Result<u32> {
+pub fn p2(input: &str) -> Result<impl ToString, AOCError> {
+    let input = parse_input(input);
     let res = input.iter().fold(0, |acc, row| {
         let [l, w, h] = row;
         let res = (l + l + w + w) + (l * w * h);
         acc + res
     });
     Ok(res)
-}
-
-#[cfg(test)]
-mod p1 {
-    use super::*;
-
-    fn helper(input: &str, expection: u32) {
-        let data = parse_input(input);
-        let res = p1(&data).unwrap();
-        assert_eq!(res, expection)
-    }
-
-    #[test]
-    fn t1() {
-        helper("2x3x4", 58);
-        helper("1x1x10", 43);
-    }
-}
-
-#[cfg(test)]
-mod p2 {
-    use super::*;
-
-    fn helper(input: &str, expection: u32) {
-        let data = parse_input(input);
-        let res = p2(&data).unwrap();
-        assert_eq!(res, expection)
-    }
-
-    #[test]
-    fn t1() {
-        helper("2x3x4", 34);
-        helper("1x1x10", 14);
-    }
 }

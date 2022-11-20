@@ -10,6 +10,7 @@ edition = "2021"
 doctest = false
 
 [dependencies]
+helper = { workspace = true }
 anyhow = { workspace = true }
 hex = "0.4.3"
 md-5 = "0.10.5"

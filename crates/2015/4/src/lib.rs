@@ -1,14 +1,10 @@
 use anyhow::Result;
+use helper::AOCError;
 use hex::ToHex;
 use md5::{Digest, Md5};
 use std::fmt;
 
-pub fn get_input() -> Result<String> {
-    let input = std::fs::read_to_string("../../../crates/2015/4/src/4.txt")?;
-    Ok(input)
-}
-
-pub fn p1(input: &str) -> Result<i32> {
+pub fn p1(input: &str) -> Result<impl ToString, AOCError> {
     let mut counter = 0;
     let sh = Md5::new();
     loop {
@@ -28,7 +24,7 @@ pub fn p1(input: &str) -> Result<i32> {
     Ok(counter)
 }
 
-pub fn p2(input: &str) -> Result<i32> {
+pub fn p2(input: &str) -> Result<impl ToString, AOCError> {
     let mut counter = 0;
     let sh = Md5::new();
     loop {
@@ -46,38 +42,4 @@ pub fn p2(input: &str) -> Result<i32> {
         counter += 1;
     }
     Ok(counter)
-}
-
-#[cfg(test)]
-mod d1 {
-    use super::*;
-
-    #[test]
-    #[ignore = "slow"]
-    fn p1_test() {
-        let key = "abcdef";
-        let a = p1(key).unwrap();
-        assert_eq!(a, 609043);
-
-        let key = "pqrstuv";
-        let a = p1(key).unwrap();
-        assert_eq!(a, 1048970);
-
-        let key = get_input().unwrap();
-        let a = p1(&key).unwrap();
-        assert_eq!(a, 282749)
-    }
-}
-
-#[cfg(test)]
-mod d2 {
-    use super::*;
-
-    #[test]
-    #[ignore = "slow"]
-    fn p2_test() {
-        let key = get_input().unwrap();
-        let a = p2(&key).unwrap();
-        assert_eq!(a, 9962624)
-    }
 }

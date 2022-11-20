@@ -1,6 +1,7 @@
 use std::str::FromStr;
 
 use anyhow::Result;
+use helper::AOCError;
 use itertools::Itertools;
 
 use fancy_regex::Regex;
@@ -28,11 +29,6 @@ impl FromStr for Commands {
             _ => Err("Invalid command".to_string()),
         }
     }
-}
-
-pub fn get_input() -> Result<String> {
-    let input = std::fs::read_to_string("../../../../../crates/2015/6/src/6.txt")?;
-    Ok(input)
 }
 
 fn parse(input: &str) -> Vec<(Commands, (usize, usize), (usize, usize))> {
@@ -78,7 +74,7 @@ fn lights_on(grid: &BoardP1) -> usize {
     grid.iter().filter(|i| **i == true).count()
 }
 
-pub fn p1(inputs: &str) -> Result<usize> {
+pub fn p1(inputs: &str) -> Result<impl ToString, AOCError> {
     let mut grid: BoardP1 = [false; BOARD_SIZE];
     let inputs = parse(inputs);
 
@@ -90,7 +86,7 @@ pub fn p1(inputs: &str) -> Result<usize> {
     Ok(lights_on(&grid))
 }
 
-pub fn p2(inputs: &str) -> Result<u32> {
+pub fn p2(inputs: &str) -> Result<impl ToString, AOCError> {
     let mut grid: Vec<u32> = vec![0; BOARD_SIZE];
     let inputs = parse(inputs);
 
@@ -107,25 +103,4 @@ pub fn p2(inputs: &str) -> Result<u32> {
 
     let res = grid.iter().fold(0, |acc, &item| (acc + item));
     Ok(res)
-}
-
-#[cfg(test)]
-mod p1 {
-    use super::*;
-
-    #[test]
-    fn t1() {
-        let input = "turn on 766,112 through 792,868";
-        let (c, p1, p2) = parse(input)[0];
-        assert_eq!(c, Commands::TurnOn);
-        assert_eq!(p1, (766, 112));
-        assert_eq!(p2, (792, 868));
-    }
-
-    #[test]
-    fn t2() {
-        let input = "toggle 0,0 through 999,0";
-        let lights = p1(input).unwrap();
-        assert_eq!(lights, 1000);
-    }
 }

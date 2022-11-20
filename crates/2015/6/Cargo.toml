@@ -10,6 +10,7 @@ edition = "2021"
 doctest = false
 
 [dependencies]
+helper = { workspace = true }
 itertools = { workspace = true }
 anyhow = { workspace = true }
-fancy-regex ={ workspace = true }
+fancy-regex = { workspace = true }

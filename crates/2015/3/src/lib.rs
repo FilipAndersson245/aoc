@@ -1,12 +1,8 @@
 use anyhow::Result;
+use helper::*;
 use std::collections::HashSet;
 
-pub fn get_input() -> Result<String> {
-    let input = std::fs::read_to_string("../../../crates/2015/3/src/3.txt")?;
-    Ok(input)
-}
-
-pub fn p1(input: &str) -> Result<i32> {
+pub fn p1(input: &str) -> Result<impl ToString, AOCError> {
     let mut pos = (0, 0);
     let mut seen = HashSet::from([pos]);
     let mut houses = 1;
@@ -26,7 +22,7 @@ pub fn p1(input: &str) -> Result<i32> {
     Ok(houses)
 }
 
-pub fn p2(input: &str) -> Result<i32> {
+pub fn p2(input: &str) -> Result<impl ToString, AOCError> {
     let mut poss = [(0, 0), (0, 0)];
     let mut seen = HashSet::from([poss[0]]);
     let mut houses = 1;
@@ -45,32 +41,4 @@ pub fn p2(input: &str) -> Result<i32> {
         }
     }
     Ok(houses)
-}
-
-#[cfg(test)]
-mod p1 {
-    use super::*;
-
-    #[test]
-    fn t1() {
-        assert_eq!(p1(">").unwrap(), 2);
-        assert_eq!(p1(">>").unwrap(), 3);
-        assert_eq!(p1(">><").unwrap(), 3);
-        assert_eq!(p1("").unwrap(), 1);
-        assert_eq!(p1("^").unwrap(), 2);
-        assert_eq!(p1("^>v<").unwrap(), 4);
-        assert_eq!(p1("^v^v^v^v^v^").unwrap(), 2);
-    }
-}
-
-#[cfg(test)]
-mod p2 {
-    use super::*;
-
-    #[test]
-    fn t1() {
-        assert_eq!(p2("^v").unwrap(), 3);
-        assert_eq!(p2("^>v<").unwrap(), 3);
-        assert_eq!(p2("^v^v^v^v^v").unwrap(), 11);
-    }
 }

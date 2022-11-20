@@ -10,4 +10,5 @@ edition = "2021"
 doctest = false
 
 [dependencies]
+helper = { workspace = true }
 anyhow = { workspace = true }
