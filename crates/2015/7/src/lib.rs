@@ -22,10 +22,10 @@ pub fn p1(input: &str) -> Result<impl ToString, AOCError> {
         knowledge.base.insert(ident, wire);
     }
 
-    Ok(p1_recursive(&mut knowledge, key))
+    Ok(p1_inner(&mut knowledge, key))
 }
 
-fn p1_recursive(knowledge: &mut Schema, key: &str) -> u16 {
+fn p1_inner(knowledge: &mut Schema, key: &str) -> u16 {
     if let Ok(val) = key.parse::<u16>() {
         return val;
     }
@@ -35,8 +35,8 @@ fn p1_recursive(knowledge: &mut Schema, key: &str) -> u16 {
 
     let shortcut = match knowledge.base[key][..] {
         [first, cmd, second] => {
-            let first = p1_recursive(knowledge, first);
-            let second = p1_recursive(knowledge, second);
+            let first = p1_inner(knowledge, first);
+            let second = p1_inner(knowledge, second);
             match cmd {
                 "AND" => first & second,
                 "OR" => first | second,
@@ -45,8 +45,8 @@ fn p1_recursive(knowledge: &mut Schema, key: &str) -> u16 {
                 _ => unreachable!(),
             }
         }
-        [_, val_or_ident] => !p1_recursive(knowledge, val_or_ident),
-        [val_or_ident] => p1_recursive(knowledge, val_or_ident),
+        [_, val_or_ident] => !p1_inner(knowledge, val_or_ident),
+        [val_or_ident] => p1_inner(knowledge, val_or_ident),
         [..] => unreachable!(),
     };
 
