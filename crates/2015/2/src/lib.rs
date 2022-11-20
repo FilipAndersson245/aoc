@@ -11,7 +11,7 @@ fn parse_input(input: &str) -> Vec<Row> {
         .map(|line| {
             let mut row: Row = line
                 .split('x')
-                .map(|s| u32::from_str_radix(s, 10).unwrap())
+                .map(|s| s.parse::<u32>().unwrap())
                 .collect_vec()
                 .try_into()
                 .expect("Wrong number of parameters");

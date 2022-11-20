@@ -30,22 +30,18 @@ fn p1_line(input: &str) -> u32 {
     while let Some(ch) = iter.next() {
         let next_ch = iter.peek().unwrap_or(&' ');
 
-        vowels += if is_vowel(ch) { 1 } else { 0 };
+        vowels += i32::from(is_vowel(ch));
 
-        duplicates += if ch == *next_ch { 1 } else { 0 };
+        duplicates += i32::from(ch == *next_ch);
 
         let word = format!("{}{}", ch, next_ch);
-        naughty_words += if is_naughty_word(&word) { 1 } else { 0 };
+        naughty_words += i32::from(is_naughty_word(&word));
     }
 
-    if vowels >= 3 && duplicates >= 1 && naughty_words == 0 {
-        1
-    } else {
-        0
-    }
+    u32::from(vowels >= 3 && duplicates >= 1 && naughty_words == 0)
 }
 
-pub fn p1(input: &Vec<String>) -> Result<impl ToString, AOCError> {
+pub fn p1(input: &[String]) -> Result<impl ToString, AOCError> {
     Ok(input.iter().map(|line| p1_line(line)).sum::<u32>())
 }
 
@@ -66,6 +62,6 @@ fn p2_line(input: &str) -> u32 {
     }
 }
 
-pub fn p2(input: &Vec<String>) -> Result<impl ToString, AOCError> {
+pub fn p2(input: &[String]) -> Result<impl ToString, AOCError> {
     Ok(input.iter().map(|line| p2_line(line)).sum::<u32>())
 }

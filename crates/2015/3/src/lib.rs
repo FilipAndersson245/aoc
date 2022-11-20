@@ -27,7 +27,7 @@ pub fn p2(input: &str) -> Result<impl ToString, AOCError> {
     let mut seen = HashSet::from([poss[0]]);
     let mut houses = 1;
     for (idx, dir) in input.char_indices() {
-        let idx = if idx % 2 == 0 { 0 } else { 1 };
+        let idx = usize::from(idx % 2 != 0);
         let (x, y) = poss[idx];
         poss[idx] = match dir {
             '^' => (x + 1, y),

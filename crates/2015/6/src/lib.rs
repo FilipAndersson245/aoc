@@ -31,7 +31,7 @@ impl FromStr for Commands {
     }
 }
 
-fn parse(input: &str) -> Vec<(Commands, (usize, usize), (usize, usize))> {
+fn parse(input: &str) -> Vec<(Commands, Point, Point)> {
     let re = Regex::new(r"(toggle|turn off|turn on) (\d+),(\d+) through (\d+),(\d+)").unwrap();
     let caps = re.captures_iter(input);
 
@@ -71,7 +71,7 @@ fn new_light_state_p1(command: Commands, light_state: bool) -> bool {
 }
 
 fn lights_on(grid: &BoardP1) -> usize {
-    grid.iter().filter(|i| **i == true).count()
+    grid.iter().filter(|i| **i).count()
 }
 
 pub fn p1(inputs: &str) -> Result<impl ToString, AOCError> {
@@ -101,6 +101,6 @@ pub fn p2(inputs: &str) -> Result<impl ToString, AOCError> {
         });
     });
 
-    let res = grid.iter().fold(0, |acc, &item| (acc + item));
+    let res = grid.iter().sum::<u32>();
     Ok(res)
 }

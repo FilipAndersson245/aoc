@@ -28,7 +28,7 @@ pub enum AOCError {
 }
 
 pub fn get_input(year: usize, day: usize) -> Result<String, AOCError> {
-    let mut f = File::open(&format!("~/.aoc/{}/{}.txt", year, day))?;
+    let mut f = File::open(format!("~/.aoc/{}/{}.txt", year, day))?;
     let mut buf = String::new();
     f.read_to_string(&mut buf)?;
     Ok(buf)
