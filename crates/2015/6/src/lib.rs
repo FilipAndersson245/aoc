@@ -15,7 +15,7 @@ enum Commands {
 
 const BOARD_WIDTH: usize = 1000;
 const BOARD_SIZE: usize = BOARD_WIDTH * BOARD_WIDTH;
-type BoardP1 = [bool; BOARD_SIZE];
+type BoardP1 = Vec<bool>;
 type Point = (usize, usize);
 
 impl FromStr for Commands {
@@ -74,9 +74,9 @@ fn lights_on(grid: &BoardP1) -> usize {
     grid.iter().filter(|i| **i).count()
 }
 
-pub fn p1(inputs: &str) -> Result<impl ToString, AOCError> {
-    let mut grid: BoardP1 = [false; BOARD_SIZE];
-    let inputs = parse(inputs);
+pub fn p1(input: &str) -> Result<impl ToString, AOCError> {
+    let mut grid: BoardP1 = vec![false; BOARD_SIZE];
+    let inputs = parse(input);
 
     inputs.iter().for_each(|(command, p1, p2)| {
         let idxs = cords_to_index(*p1, *p2);
@@ -86,9 +86,9 @@ pub fn p1(inputs: &str) -> Result<impl ToString, AOCError> {
     Ok(lights_on(&grid))
 }
 
-pub fn p2(inputs: &str) -> Result<impl ToString, AOCError> {
+pub fn p2(input: &str) -> Result<impl ToString, AOCError> {
     let mut grid: Vec<u32> = vec![0; BOARD_SIZE];
-    let inputs = parse(inputs);
+    let inputs = parse(input);
 
     inputs.iter().for_each(|(command, p1, p2)| {
         let idxs = cords_to_index(*p1, *p2);

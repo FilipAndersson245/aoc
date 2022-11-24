@@ -1,0 +1,59 @@
+use clap::Parser;
+use helper::{get_input, AOCError};
+
+/// Simple program to greet a person
+#[derive(Parser, Debug)]
+#[command(author, version, about, long_about = None)]
+struct Args {
+    year: usize,
+    day: usize,
+}
+
+fn execute<T, K>(p1: T, p2: K) -> Option<String>
+where
+    T: Sized + ToString,
+    K: Sized + ToString,
+{
+    let p1 = p1.to_string();
+    let p2 = p2.to_string();
+    Some(format!("Part 1:\n{}\n\nPart 2:\n{}", p1, p2))
+}
+
+fn main() -> Result<(), AOCError> {
+    let args = Args::parse();
+
+    let day = args.day;
+    let year = args.year;
+
+    if !(1..=25).contains(&day) {
+        return Err(AOCError::IncorrectInput("Day should be between 1-25"));
+    }
+
+    if year < 2015 {
+        return Err(AOCError::IncorrectInput("Year need to be be after 2014"));
+    }
+
+    let input = get_input(args.year, args.day)?;
+
+    let result = match year {
+        2015 => match day {
+            1 => execute(aoc_2015_1::p1(&input)?, aoc_2015_1::p2(&input)?),
+            2 => execute(aoc_2015_2::p1(&input)?, aoc_2015_2::p2(&input)?),
+            3 => execute(aoc_2015_3::p1(&input)?, aoc_2015_3::p2(&input)?),
+            4 => execute(aoc_2015_4::p1(&input)?, aoc_2015_4::p2(&input)?),
+            5 => execute(aoc_2015_5::p1(&input)?, aoc_2015_5::p2(&input)?),
+            6 => execute(aoc_2015_6::p1(&input)?, aoc_2015_6::p2(&input)?),
+            7 => execute(aoc_2015_7::p1(&input)?, aoc_2015_7::p2(&input)?),
+            _ => None,
+        },
+        _ => None,
+    };
+
+    if let Some(res) = result {
+        println!("{}", res);
+    } else {
+        return Err(AOCError::IncorrectInput("Implementation was not found."));
+    }
+
+    Ok(())
+}

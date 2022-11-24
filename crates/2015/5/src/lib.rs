@@ -41,8 +41,8 @@ fn p1_line(input: &str) -> u32 {
     u32::from(vowels >= 3 && duplicates >= 1 && naughty_words == 0)
 }
 
-pub fn p1(input: &[String]) -> Result<impl ToString, AOCError> {
-    Ok(input.iter().map(|line| p1_line(line)).sum::<u32>())
+pub fn p1(input: &str) -> Result<impl ToString, AOCError> {
+    Ok(input.lines().map(p1_line).sum::<u32>())
 }
 
 fn is_containing_pair(input: &str) -> bool {
@@ -50,18 +50,18 @@ fn is_containing_pair(input: &str) -> bool {
     regex.is_match(input).expect("to not fail")
 }
 
-fn is_containing_repet(input: &str) -> bool {
+fn is_containing_repeat(input: &str) -> bool {
     let regex = Lazy::new(|| Regex::new(r"([a-z])[a-z]\1").expect("To be valid"));
     regex.is_match(input).expect("to not fail")
 }
 
 fn p2_line(input: &str) -> u32 {
-    match is_containing_repet(input) && is_containing_pair(input) {
+    match is_containing_repeat(input) && is_containing_pair(input) {
         true => 1,
         false => 0,
     }
 }
 
-pub fn p2(input: &[String]) -> Result<impl ToString, AOCError> {
-    Ok(input.iter().map(|line| p2_line(line)).sum::<u32>())
+pub fn p2(input: &str) -> Result<impl ToString, AOCError> {
+    Ok(input.lines().map(p2_line).sum::<u32>())
 }

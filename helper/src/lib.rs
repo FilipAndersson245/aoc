@@ -1,4 +1,5 @@
 use anyhow::Result;
+use dirs::home_dir;
 use std::fmt::Debug;
 use std::fs::File;
 use std::io::Read;
@@ -28,7 +29,11 @@ pub enum AOCError {
 }
 
 pub fn get_input(year: usize, day: usize) -> Result<String, AOCError> {
-    let mut f = File::open(format!("~/.aoc/{}/{}.txt", year, day))?;
+    let path = format!(".aoc/{}/{}.txt", year, day);
+    let path = home_dir()
+        .map(|p| p.join(path))
+        .ok_or_else(|| AOCError::IncorrectInput("year or date is invalid string"))?;
+    let mut f = File::open(path)?;
     let mut buf = String::new();
     f.read_to_string(&mut buf)?;
     Ok(buf)

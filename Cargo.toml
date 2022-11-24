@@ -1,5 +1,5 @@
 [workspace]
-members = ["tests", "helper", "crates/2015/*"]
+members = ["aoc-runner", "tests", "helper", "crates/*/*"]
 resolver = "2"
 
 [workspace.dependencies]
@@ -27,10 +27,12 @@ panic = "abort"
 # Optimize dependencies.
 [profile.dev.package]
 anyhow.opt-level = 1
+thiserror.opt-level = 1
 itertools.opt-level = 1
 fancy-regex.opt-level = 1
 
 [profile.test.package]
 anyhow.opt-level = 1
+thiserror.opt-level = 1
 itertools.opt-level = 1
 fancy-regex.opt-level = 1

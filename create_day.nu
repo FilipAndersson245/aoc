@@ -25,6 +25,24 @@
 #     }
 # }
 
+def aoc-create-day [year, day] {
+    let _ = (aoc-get-day $year $day)
+    let name = $"aoc_($year)_($day)"
+    let path_year = $"./crates/($year)"
+    let path_day = $"($path_year)/($day)"
+    mkdir $path_year
+    cp --recursive "./template" $path_year
+    mv $"($path_year)/template" $path_day
+    rm $"($path_day)/template" -r -f
+
+    fd -p crates.+(toml|rs) | lines | each { |it| 
+        echo $it
+        sd '§name§' $name $it
+        sd '§year§' $year $it
+        sd '§day§'  $day  $it
+    }
+}
+
 def aoc-get-day [year, day] {
     if ("~/.aoc/" | path exists) {} else {
         mkdir ("~/.aoc/" | path expand)
