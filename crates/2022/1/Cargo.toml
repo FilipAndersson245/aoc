@@ -1,0 +1,17 @@
+[package]
+name = "aoc-2022-1"
+version = "0.0.0"
+authors = ["Filip Andersson"]
+description = "Advent of code 2022, day 1"
+license = "MIT"
+edition = "2021"
+
+[lib]
+doctest = false
+
+
+[dependencies]
+helper = { workspace = true }
+itertools = { workspace = true }
+anyhow = { workspace = true }
+fancy-regex = { workspace = true, default-features = false}

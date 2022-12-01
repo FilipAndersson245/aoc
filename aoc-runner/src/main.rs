@@ -46,6 +46,11 @@ fn main() -> Result<(), AOCError> {
             7 => execute(aoc_2015_7::p1(&input)?, aoc_2015_7::p2(&input)?),
             _ => None,
         },
+        2022 => match day {
+            1 => execute(aoc_2022_1::p1(&input)?, aoc_2022_1::p2(&input)?),
+
+            _ => None,
+        },
         _ => None,
     };
 
