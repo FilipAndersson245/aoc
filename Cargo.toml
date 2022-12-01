@@ -16,12 +16,12 @@ nom = "7.1.1"
 [profile.dev]
 incremental = true
 codegen-units = 512
+debug = 0
+strip = "symbols"
 
 [profile.release]
 lto = "thin"
-debug = 0
 strip = "symbols"
-panic = "abort"
 
 
 # Optimize dependencies.

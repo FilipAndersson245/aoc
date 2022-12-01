@@ -9,7 +9,6 @@ edition = "2021"
 
 [dependencies]
 helper = { workspace = true }
-clap = { version = "4.0", features = ["derive"] }
 
 "aoc-2015-1" = { path = "../crates/2015/1", version = "*"}
 "aoc-2015-2" = { path = "../crates/2015/2", version = "*"}
