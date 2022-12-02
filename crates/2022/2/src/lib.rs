@@ -1,6 +1,5 @@
 use helper::AOCError;
-// A rock
-// B
+
 pub fn p1(input: &str) -> Result<impl ToString, AOCError> {
     let res: u64 = input
         .lines()
