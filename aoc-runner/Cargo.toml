@@ -19,3 +19,4 @@ helper = { workspace = true }
 "aoc-2015-7" = { path = "../crates/2015/7", version = "*"}
 
 "aoc-2022-1" = { path = "../crates/2022/1", version = "*"}
+"aoc-2022-2" = { path = "../crates/2022/2", version = "*"}

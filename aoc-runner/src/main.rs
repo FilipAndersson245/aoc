@@ -41,7 +41,7 @@ fn main() -> Result<(), AOCError> {
         // },
         2022 => match day {
             1 => execute(aoc_2022_1::p1(&input)?, aoc_2022_1::p2(&input)?),
-            // 2 => execute(aoc_2022_2::p1(&input)?, aoc_2022_2::p2(&input)?),
+            2 => execute(aoc_2022_2::p1(&input)?, aoc_2022_2::p2(&input)?),
             // 3 => execute(aoc_2022_3::p1(&input)?, aoc_2022_3::p2(&input)?),
             // 4 => execute(aoc_2022_4::p1(&input)?, aoc_2022_4::p2(&input)?),
             // 5 => execute(aoc_2022_5::p1(&input)?, aoc_2022_5::p2(&input)?),
